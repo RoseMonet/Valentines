@@ -1,86 +1,85 @@
+/* Center everything beautifully */
 body {
     margin: 0;
     padding: 16px;
-    height:100vh;
-    background: #ffc0cb;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ff9aa2, #ffb7b2, #ffdac1); /* Soft gradient for a dreamy feel */
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Dancing Script', cursive;
 }
 
+/* Valentine's Card */
 .valentines_card {
     position: relative;
     cursor: pointer;
     transform-style: preserve-3d;
     transform: perspective(2500px);
-    transition: 4s;
+    transition: transform 1s ease-in-out;
 }
 
-.front_img {
-    width: 450px;
-    margin-right: -50px;
-    margin-left: -50px; 
-    margin-top: 100px;
-    position: relative; 
+.valentines_card:hover {
+    transform: perspective(2500px) rotateY(-160deg);
 }
 
-.inside_img {
-    width: 350px;
-    margin-right: -50px;
-    margin-left: -50px; 
-    margin-top: 100px;
-    position: relative; 
-}
-
-.valentines_card:hover .front_card{
-    transform: rotateY(-160deg); 
-} 
-.valentines_card:hover .front_text {
-    display: none;
-}
-.front_text, .inside_text{
-    color: #A60657;
-    font-family: 'Brush Script MT';
-    font-size: 24px;
-}
-
-.front_card {
-    position: relative;
-    overflow: hidden;
-    transform-origin: left;
-    margin: 40px auto;
-    padding: 16px;
-    background-color: whitesmoke;
-    text-align: center;
-    box-shadow: 0 24px 40px -8px #ff1493;
-    width: 450px;
-    height: 800px;
-}
-.inside_card {
+/* Front of the Card */
+.front_card, .inside_card {
     position: absolute;
     overflow: hidden;
     transform-origin: left;
-    margin: 40px auto;
-    padding: 16px;
+    width: 450px;
+    height: 800px;
     background-color: whitesmoke;
     text-align: center;
     box-shadow: 0 24px 40px -8px #ff1493;
-    width: 450px;
-    height: 800px;
-    z-index:-1;
-    left:0;
-    top:0;
-
+    border-radius: 10px;
 }
-.valentines_card audio {
+
+/* Makes flipping smooth */
+.front_card {
+    backface-visibility: hidden;
+    z-index: 2;
+    transition: transform 1s ease-in-out;
+}
+
+.front_text, .inside_text {
+    color: #A60657;
+    font-size: 24px;
+}
+
+/* Inside of the Card */
+.inside_card {
+    z-index: 1;
+    left: 0;
+    top: 0;
+}
+
+/* Images */
+.front_img, .inside_img {
+    width: 100%;
+    max-width: 450px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Hide front text on flip */
+.valentines_card:hover .front_text {
     display: none;
 }
 
-.valentines_card:hover .front_img {
-    display: none;
-}
+/* Style the Audio Player */
 .inside_card audio {
-    display: flex;
-    margin-left: 50px;
-    margin-right: 40px;
+    display: block;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
+}
+
+/* 💖 Mobile Responsive */
+@media (max-width: 500px) {
+    .front_card, .inside_card {
+        width: 90%;
+        height: auto;
+    }
 }
